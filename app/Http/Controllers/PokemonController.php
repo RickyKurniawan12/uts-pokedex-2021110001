@@ -49,13 +49,14 @@ class PokemonController extends Controller
     {
         // Find Pokemon by id
         $pokemon = Pokemon::findOrFail($id);
-        return response()->json($pokemon);
+        return view('pokemon.show', compact('pokemon'));
     }
     public function edit($id)
 {
     $pokemon = Pokemon::findOrFail($id);
     return view('pokemon.edit', compact('pokemon'));
 }
+
 
     /**
      * Update the specified resource in storage.
