@@ -51,6 +51,11 @@ class PokemonController extends Controller
         $pokemon = Pokemon::findOrFail($id);
         return response()->json($pokemon);
     }
+    public function edit($id)
+{
+    $pokemon = Pokemon::findOrFail($id);
+    return view('pokemon.edit', compact('pokemon'));
+}
 
     /**
      * Update the specified resource in storage.
