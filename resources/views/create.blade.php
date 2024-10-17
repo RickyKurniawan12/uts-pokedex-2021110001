@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Create New Pokémon</h1>
+    <h1>Create New Pokemon</h1>
 
     <!-- Display validation errors -->
     @if ($errors->any())
@@ -69,7 +69,7 @@
             <input type="file" name="photo" class="form-control-file">
         </div>
 
-        <button type="submit" class="btn btn-primary">Create Pokémon</button>
+        <button type="submit" class="btn btn-primary">Create Pokemon</button>
     </form>
 </div>
 @endsection
