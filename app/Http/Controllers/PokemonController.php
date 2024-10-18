@@ -15,14 +15,14 @@ class PokemonController extends Controller
     {
         // Get all Pokemon records
         $pokemon = Pokemon::all();
-        return view('pokemon.index', compact('pokemons'));
+        return view('pokemons.index', compact('pokemon'));
     }
    /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('pokemons.create');
+        return view('pokemon.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -74,12 +74,12 @@ class PokemonController extends Controller
     {
         // Find Pokemon by id
         $pokemon = Pokemon::findOrFail($id);
-        return view('pokemon.show', compact('pokemons'));
+        return view('pokemon.show', compact('pokemon'));
     }
     public function edit($id)
 {
     $pokemon = Pokemon::findOrFail($id);
-    return view('pokemon.edit', compact('pokemons'));
+    return view('pokemon.edit', compact('pokemon'));
 }
 
 
@@ -127,7 +127,7 @@ class PokemonController extends Controller
             'defense'=> $validated['defense'],
             'is_legendary'=> $validated['is_legendary'],
             'photo'=> $validated['photo']?? $pokemon->photo,]);
-        return redirect()->route('pokemon.index')->with('success','pokemon updated successfully');
+        return redirect()->route('pokemons.index')->with('success','pokemon updated successfully');
     }
 
     /**
@@ -139,6 +139,6 @@ class PokemonController extends Controller
             Storage::delete($$pokemon->photo);
         }
         $pokemon->delete();
-        return redirect()->route('pokemon.index')->with('success','pokemon deleted successfully');
+        return redirect()->route('pokemons.index')->with('success','pokemon deleted successfully');
     }
 }

@@ -20,7 +20,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-            <a href="{{route('pokemon.index')}}"class="nav-link">pokemon</a>
+            <a href="{{route('pokemons.index')}}"class="nav-link">pokemon</a>
             </li>
         </ul>
     </div>

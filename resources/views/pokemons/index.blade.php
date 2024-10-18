@@ -5,7 +5,7 @@
     <h1>Pokémon List</h1>
     
     <!-- Check if there are any Pokémon to display -->
-    @if($pokemons->isEmpty())
+    @if($pokemon->isEmpty())
         <p>No Pokemon found.</p>
     @else
         <table class="table table-bordered">

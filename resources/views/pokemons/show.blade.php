@@ -49,6 +49,6 @@
         <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Pokémon?')">Delete</button>
     </form>
 
-    <a href="{{ route('pokemon.index') }}" class="btn btn-secondary">Back to Pokemon List</a>
+    <a href="{{ route('pokemons.index') }}" class="btn btn-secondary">Back to Pokemon List</a>
 </div>
 @endsection
