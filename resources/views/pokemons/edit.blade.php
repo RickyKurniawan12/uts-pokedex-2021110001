@@ -1,8 +1,8 @@
-@extends('layouts.template')
+@extends('layouts.app')
 
 @section('title', 'Update Pokemon')
 
-@section('body')
+@section('content')
 <div class="container">
     <h1>Edit Pokemon: {{ $pokemon->name }}</h1>
 

@@ -23,6 +23,9 @@
             <a href="{{route('pokemons.index')}}"class="nav-link">pokemon</a>
             </li>
         </ul>
+        @if (Route::has('login'))
+    <a href="{{ route('login') }}">Login</a>
+    @endif  
     </div>
     </div>
     </nav>
