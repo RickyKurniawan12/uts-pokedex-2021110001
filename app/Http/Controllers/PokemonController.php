@@ -64,7 +64,7 @@ class PokemonController extends Controller
             'photo' => $validated['photo']?? null,
            ]);
     
-           return redirect()->route('pokemon.index')->with('success','pokemon added successfully');
+           return redirect()->route('pokemons.index')->with('success','pokemon added successfully');
     }
 
     /**
@@ -135,7 +135,7 @@ class PokemonController extends Controller
      */
     public function destroy(pokemon $pokemon)
     {
-        if($pokemon->avatar){
+        if($pokemon->photo){
             Storage::delete($$pokemon->photo);
         }
         $pokemon->delete();

@@ -1,8 +1,8 @@
-@extends('layouts.template')
+@extends('layouts.app')
 
 @section('title','Register New Pokemon')
 
-@section('body')
+@section('content')
 
 <div class="'mt-4 p-5 bg-black text-white rounded">
     <h1>Register New Pokemon</h1>
@@ -19,7 +19,7 @@
         </div>
     @endif
 
-        <form action={{route('pokemons.store')}} method="POST" enctype="multipart/form-data">
+        <form action={{route('pokemon.store')}} method="POST" enctype="multipart/form-data">
             @csrf
             
            

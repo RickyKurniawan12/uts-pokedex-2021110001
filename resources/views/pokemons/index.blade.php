@@ -1,13 +1,13 @@
-@extends('layouts.template')
+@extends('layouts.app')
 
-@section('title','Pokémon List')
+@section('title','Pokemon List')
 
-@section('body')
+@section('content')
 <div class="mt-4 p-5 bg-black text-white rounded">
-    <h1>All Pokémon</h1>
+    <h1>All Pokemon</h1>
 
-    <a href="{{ route('pokemons.create') }}" class="btn btn-primary btn-sm">
-        Add New Pokémon
+    <a href="{{ route('pokemon.create') }}" class="btn btn-primary btn-sm">
+        Add New Pokemon
     </a>
 </div>
 
@@ -35,27 +35,27 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($pokemon as $pokemon)
+            @forelse($pokemon as $poke)
             <tr>
                 <th scope="row">{{ $pokemon->id }}</th>
                 <td>
-                    <a href="{{ route('pokemons.show', $pokemon) }}">
+                    <a href="{{ route('pokemon.show', $pokemon) }}">
                         {{ $pokemon->name }}
                     </a>
                 </td>
-                <td>{{ $pokemon->species }}</td>
-                <td>{{ $pokemon->primary_type }}</td>
-                <td>{{ $pokemon->hp }}</td>
-                <td>{{ $pokemon->attack }}</td>
-                <td>{{ $pokemon->defense }}</td>
-                <td>{{ $pokemon->is_legendary ? 'Yes' : 'No' }}</td>
-                <td>{{ $pokemon->created_at }}</td>
-                <td>{{ $pokemon->updated_at }}</td>
+                <td>{{ $poke->species }}</td>
+                <td>{{ $poke->primary_type }}</td>
+                <td>{{ $poke->hp }}</td>
+                <td>{{ $poke->attack }}</td>
+                <td>{{ $poke->defense }}</td>
+                <td>{{ $poke->is_legendary ? 'Yes' : 'No' }}</td>
+                <td>{{ $poke->created_at }}</td>
+                <td>{{ $poke->updated_at }}</td>
                 <td>
-                    <a href="{{ route('pokemons.edit', $pokemon) }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('pokemon.edit', $poke) }}" class="btn btn-primary btn-sm">
                         Edit
                     </a>
-                    <form action="{{ route('pokemons.destroy', $pokemon) }}" method="POST" class="d-inline-block">
+                    <form action="{{ route('pokemon.destroy', $poke) }}" method="POST" class="d-inline-block">
                         @method('DELETE')
                         @csrf
 
@@ -67,14 +67,14 @@
             </tr>
             @empty
             <tr>
-                <td colspan="11">No Pokémon found</td>
+                <td colspan="11">No Pokemon found</td>
             </tr>
             @endforelse
         </tbody>
     </table>
 
-    {{-- <div class="d-flex justify-content-center">
-        {!! $pokemon->links() !!} --}}
+    <div class="d-flex justify-content-center">
+        {!! $pokemon->links() !!}
     </div>
 </div>
 
