@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pokemon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PokemonController extends Controller
 {
@@ -13,10 +14,16 @@ class PokemonController extends Controller
     public function index()
     {
         // Get all Pokemon records
-        $pokemons = Pokemon::all();
-        return response()->json($pokemons);
+        $pokemon = Pokemon::all();
+        return view('pokemon.index', compact('pokemons'));
     }
-
+   /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return view('pokemons.create');
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -36,10 +43,28 @@ class PokemonController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:2048'
         ]);
 
-        // Create new Pokemon entry
-        $pokemon = Pokemon::create($validated);
-
-        return response()->json($pokemon, 201);
+        if($request->hasFile('avatar')){
+            $request->validate([
+                'avatar'=> 'image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            ]);
+            $imagePath = $request->file('avatar')->storePublicly('public/image');
+            $validated['avatar'] = $imagePath;
+        }
+        
+        Pokemon::create([
+            'name'=> $validated['name'],
+            'species'=> $validated['species'],
+            'primary_type'=> $validated['primary_type'],
+            'weight'=> $validated['weight'],
+            'height'=> $validated['height'],
+            'hp'=> $validated['hp'],
+            'attack'=> $validated['attack'],
+            'defense'=> $validated['defense'],
+            'is_legendary'=> $validated['is_legendary'],
+            'photo' => $validated['photo']?? null,
+           ]);
+    
+           return redirect()->route('pokemon.index')->with('success','pokemon added successfully');
     }
 
     /**
@@ -49,19 +74,19 @@ class PokemonController extends Controller
     {
         // Find Pokemon by id
         $pokemon = Pokemon::findOrFail($id);
-        return view('pokemon.show', compact('pokemon'));
+        return view('pokemon.show', compact('pokemons'));
     }
     public function edit($id)
 {
     $pokemon = Pokemon::findOrFail($id);
-    return view('pokemon.edit', compact('pokemon'));
+    return view('pokemon.edit', compact('pokemons'));
 }
 
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pokemon $pokemon)
     {
         // Validate the incoming request data
         $validated = $request->validate([
@@ -77,22 +102,43 @@ class PokemonController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,jpg,png,gif,svg|max:2048'
         ]);
 
-        // Find Pokemon by id and update
-        $pokemon = Pokemon::findOrFail($id);
-        $pokemon->update($validated);
+        if($request->hasFile('photo')){
+            $request->validate([
+                'photo'=> 'image|mimes:jpeg,jpg,png,gif,svg|max:2048',
+            ]);
 
-        return response()->json($pokemon);
+            $imagePath = $request->file('photo')->storePublicly('public/image');
+
+            // hapus file existing
+            if($pokemon->photo){
+                Storage::delete($pokemon->photo);
+            }
+
+            $validated['photo'] = $imagePath;
+        }
+        $pokemon->update([
+            'name'=> $validated['name'],
+            'species'=> $validated['species'],
+            'primary_type'=> $validated['primary_type'],
+            'weight'=> $validated['weight'],
+            'height'=> $validated['height'],
+            'hp'=> $validated['hp'],
+            'attack'=> $validated['attack'],
+            'defense'=> $validated['defense'],
+            'is_legendary'=> $validated['is_legendary'],
+            'photo'=> $validated['photo']?? $pokemon->photo,]);
+        return redirect()->route('pokemon.index')->with('success','pokemon updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(pokemon $pokemon)
     {
-        // Find Pokemon by id and delete
-        $pokemon = Pokemon::findOrFail($id);
+        if($pokemon->avatar){
+            Storage::delete($$pokemon->photo);
+        }
         $pokemon->delete();
-
-        return response()->json(null, 204);
+        return redirect()->route('pokemon.index')->with('success','pokemon deleted successfully');
     }
 }
