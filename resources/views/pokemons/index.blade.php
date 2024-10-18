@@ -1,4 +1,4 @@
-@extends('layout.template')
+@extends('layouts.template')
 
 @section('title','Pokémon List')
 
@@ -35,7 +35,7 @@
             </tr>
         </thead>
         <tbody>
-            @forelse($pokemons as $pokemon)
+            @forelse($pokemon as $pokemon)
             <tr>
                 <th scope="row">{{ $pokemon->id }}</th>
                 <td>
@@ -73,8 +73,8 @@
         </tbody>
     </table>
 
-    <div class="d-flex justify-content-center">
-        {!! $pokemons->links() !!}
+    {{-- <div class="d-flex justify-content-center">
+        {!! $pokemon->links() !!} --}}
     </div>
 </div>
 

@@ -22,7 +22,7 @@ class PokemonController extends Controller
      */
     public function create()
     {
-        return view('pokemon.create');
+        return view('pokemons.create');
     }
     /**
      * Store a newly created resource in storage.
@@ -74,12 +74,12 @@ class PokemonController extends Controller
     {
         // Find Pokemon by id
         $pokemon = Pokemon::findOrFail($id);
-        return view('pokemon.show', compact('pokemon'));
+        return view('pokemons.show', compact('pokemon'));
     }
     public function edit($id)
 {
     $pokemon = Pokemon::findOrFail($id);
-    return view('pokemon.edit', compact('pokemon'));
+    return view('pokemons.edit', compact('pokemon'));
 }
 
 

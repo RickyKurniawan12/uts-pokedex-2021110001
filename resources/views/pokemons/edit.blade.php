@@ -18,7 +18,7 @@
     @endif
 
     <!-- Form to edit Pokemon -->
-    <form action="{{ route('pokemon.update', $pokemon->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('pokemons.update', $pokemon->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
