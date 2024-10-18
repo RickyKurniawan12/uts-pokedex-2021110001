@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('pokemon', function (Blueprint $table) {
             $table->id();
             $table->string('name', length:255,);
-            $table->string('species ',length:100,);
+            $table->string('species',length:100,);
             $table->string('primary_type',length:50,);
             $table->decimal('weight', 8, 2)->default(0);
             $table->decimal('height', 8, 2)->default(0);
