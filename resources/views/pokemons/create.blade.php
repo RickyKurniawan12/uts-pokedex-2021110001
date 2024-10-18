@@ -1,24 +1,28 @@
-@extends('layouts.app')
+@extends('layout.template')
 
-@section('content')
-<div class="container">
-    <h1>Create New Pokemon</h1>
+@section('title','Register New Pokemon')
 
-    <!-- Display validation errors -->
-    @if ($errors->any())
-        <div class="alert alert-danger">
+@section('body')
+
+<div class="'mt-4 p-5 bg-black text-white rounded">
+    <h1>Register New Pokemon</h1>
+</div>
+<div class="row my-5">
+    <div class="col-12 px-5">
+        @if ($errors->any())
+        <div class="alert alert-danger mt-4">
             <ul>
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                    <li>{{$error}}</li>
                 @endforeach
             </ul>
         </div>
     @endif
 
-    <!-- Form to create a new Pokemon -->
-    <form action="{{ route('pokemon.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-
+        <form action={{route('pokemon.store')}} method="POST" enctype="multipart/form-data">
+            @csrf
+            
+           
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
@@ -70,6 +74,9 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Create Pokemon</button>
-    </form>
+            
+            <button type="submit" class="btn btn-primary btn-block">save</button>
+        </form>
+    </div>
 </div>
 @endsection
