@@ -26,7 +26,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($pokemons as $pokemon)
+                @foreach ($pokemon as $pokemon)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $pokemon->name }}</td>
