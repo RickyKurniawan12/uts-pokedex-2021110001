@@ -28,7 +28,7 @@ class pokemon extends Model
         'pokemon_image_url',
     ];
 
-    public function getpokemon_imageUrlAttribute()
+    public function getphoto_imageUrlAttribute()
     {
         if(filter_var($this->photo_image, FILTER_VALIDATE_URL)){
             return $this->photo_image;
