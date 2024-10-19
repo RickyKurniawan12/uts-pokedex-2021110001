@@ -65,7 +65,7 @@ class PokemonController extends Controller
             'photo' => $validated['photo']?? null,
            ]);
     
-           return redirect()->route('pokemon.index')->with('success','pokemon added successfully');
+           return redirect()->route('pokemons.index')->with('success','pokemon added successfully');
     }
 
     /**
@@ -128,7 +128,7 @@ class PokemonController extends Controller
             'defense'=> $validated['defense'],
             'is_legendary'=> $validated['is_legendary'],
             'photo'=> $validated['photo']?? $pokemon->photo,]);
-        return redirect()->route('pokemon.index')->with('success','pokemon updated successfully');
+        return redirect()->route('pokemons.index')->with('success','pokemon updated successfully');
     }
 
     /**
@@ -140,6 +140,6 @@ class PokemonController extends Controller
             Storage::delete($$pokemon->photo);
         }
         $pokemon->delete();
-        return redirect()->route('pokemon.index')->with('success','pokemon deleted successfully');
+        return redirect()->route('pokemons.index')->with('success','pokemon deleted successfully');
     }
 }
