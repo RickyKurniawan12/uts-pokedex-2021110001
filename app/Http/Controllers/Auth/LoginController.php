@@ -42,7 +42,7 @@ class LoginController extends Controller
     
     protected function redirectTo(Request $request)
 {
-    return route('home'); // Pastikan route 'login' sudah didefinisikan
+    return route('login'); // Pastikan route 'login' sudah didefinisikan
 }
 
 }
