@@ -137,7 +137,7 @@ class PokemonController extends Controller
     public function destroy(pokemon $pokemon)
     {
         if($pokemon->photo){
-            Storage::delete($$pokemon->photo);
+            Storage::delete($pokemon->photo);
         }
         $pokemon->delete();
         return redirect()->route('pokemons.index')->with('success','pokemon deleted successfully');
